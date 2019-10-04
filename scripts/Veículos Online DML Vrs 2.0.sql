@@ -1,7 +1,4 @@
-
---TABELA USUARIOS
 --USUÁRIOS
-
 insert into usuario (email, senha, cpf, tipo, conta, agencia, banco, nome, endereco, telefone) 
 values ('email0@email.com', '123654', '12345666711', default, '1234', '13345', '201', 'Joao Bonham', 'rua da minha casa, 44, jardim santo antonio, santa rita do sapucai, minas gerais', '35988090703');
 
@@ -20,10 +17,10 @@ values('exemplo@email.com', 'Joao', '123123');
 insert into usuario (email, nome, senha)
 values('exemplo1@email.com', 'Maria', '123123');
 
---ADMINISTRADOR
+
+--ADMINISTRADORES (USUÁRIOS)
 insert into usuario (email, senha, cpf, tipo, nome) 
 values ('rodrigo@gmail.com', '123123', '11122233311', 'ADM', 'Rodrigo C. Daflon');
-
 insert into usuario (email, senha, cpf, tipo, nome) 
 values ('wellington@gmail.com', '123123', '11133233311', 'ADM', 'Wellington');
 
@@ -70,7 +67,6 @@ values (5, 'Brasília', 'vanda ou troca', 'Financiamento', 4, 2, '7', 'Amarela',
  '1.0', '1973', 335500, 'Gasolina', 'Manual', 'Sedan', 'Volkswagen', 1500, now(), 4);
 
 
-
 --TABLE NOTIFICACAO
 insert into notificacao (data_hora, descricao)
 	values(now(), 'Exemplo de Notificação Padrão: Bem-Vindo!');
@@ -90,6 +86,7 @@ insert into notificacao (usuario_id, anuncio_id, data_hora, descricao)
 insert into notificacao (usuario_id, anuncio_id, data_hora, descricao)
 	values(2, 1, now(), 'Anúncio aprovado pelos Administradores da Veículos Online! Agora outros usuários já podem acessá-lo!');
 
+
 --TABELA FOTO_ANUNCIO
 insert into foto_anuncio (anuncio_id, nome_foto)
 	values (1, 'foto_interior');
@@ -100,11 +97,13 @@ insert into foto_anuncio (anuncio_id, nome_foto)
 insert into foto_anuncio (anuncio_id, nome_foto)
 	values (1, 'foto_das_rodas');
 
+
 --TABLE CHAT
 insert into chat (usuario_id, anuncio_id, data_hora)
 	values(1, 3, now());
 insert into chat (usuario_id, anuncio_id, data_hora)
 	values(5, 3, now());
+
 
 --TABLE MENSAGEM
 insert into mensagem (chat_id, usuario_id, data_hora, texto)
