@@ -30,50 +30,50 @@ values ('wellington@gmail.com', '123123', '11133233311', 'ADM', 'Wellington');
 
 --TABELA ANUNCIO
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status, nota)
 values (2, 'Fusca usado', 'fusquinha antigo conservado', 'Financiamento', 2, 1, '9', 'Verde',
- '1.0', '1950', 65500, 'Gasolina', 'Manual', 'sei nao', 'Volkswagen', 2000, now(), 'Ativo');
+ '1.0', '1950', 65500, 'Gasolina', 'Manual', 'sei nao', 'Volkswagen', 2000, now(), 'Ativo', 2);
 
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status, nota)
 values (2, 'Fusca meia boca', 'fusquinha antigo conservado', 'Financiamento', 2, 1, '2', 'Azul',
- '1.0', '1960', 85500, 'Gasolina', 'Manual', 'Conversível', 'Volkswagen', 5000, now(), 'Ativo');
+ '1.0', '1960', 85500, 'Gasolina', 'Manual', 'Conversível', 'Volkswagen', 5000, now(), 'Ativo', 9);
 
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status, nota)
 values (3, 'Fiat Uno', 'conservado', 'Financiamento', 4, 4, '1', 'Preto',
- '1.0', '1956', 45500, 'Gasolina', 'Manual', 'sei nao', 'Volkswagen', 12500, now(), 'Ativo');
+ '1.0', '1956', 45500, 'Gasolina', 'Manual', 'sei nao', 'Volkswagen', 12500, now(), 'Ativo', 7);
 
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status, nota)
 values (1, 'Chevrolet 1.0', 'pra vender rápido, também troco', 'Financiamento', 4, 2, '7', 'Branco',
- '2.0', '1963', 25500, 'Gasolina', 'Manual', 'Sedan', 'Chevrolet', 15000, now(), 'Ativo');
+ '2.0', '1963', 25500, 'Gasolina', 'Manual', 'Sedan', 'Chevrolet', 15000, now(), 'Ativo', 6);
 
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status, nota)
 values (4, 'Honda Civic conservado', 'somente venda', 'Dinheiro', 4, 1, '6', 'Cinza',
- '1.0', '2000', 100500, 'Flex', 'Automatico', 'Sedan', 'Honda', 30000, now(), 'Ativo');
+ '1.0', '2000', 100500, 'Flex', 'Automatico', 'Sedan', 'Honda', 30000, now(), 'Ativo', 6);
 
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status, nota)
 values (4, 'Celta 1.0 completo', 'completo, ar condicionado, trava elétrica, vidro elétrico, alarme, som, direção hidráulica...', 'Financiamento', 2, 1, '0', 'Preto',
- '1.0', '1997', 200500, 'Gasolina', 'Manual', 'Ret', 'Chevrolet', 13300, now(), 'Ativo');
+ '1.0', '1997', 200500, 'Gasolina', 'Manual', 'Ret', 'Chevrolet', 13300, now(), 'Ativo', 10);
 
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, status, nota)
 values (6, 'Fiat Mobi', 'Completo', 'Financiamento', 2, 1, '1', 'Vermelho',
- '1.0', '2018', 98500, 'Gasolina', 'Automatico', 'Ret', 'Fiat', 35000, now(), 'Ativo');
+ '1.0', '2018', 98500, 'Gasolina', 'Automatico', 'Ret', 'Fiat', 35000, now(), 'Ativo', 8);
 
 insert into anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa,
-cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao)
+cor, motor, ano, kilometragem, combustivel, cambio, modelo, marca, preco, data_hora_criacao, nota)
 values (5, 'Brasília', 'vanda ou troca', 'Financiamento', 4, 2, '7', 'Amarela',
- '1.0', '1973', 335500, 'Gasolina', 'Manual', 'Sedan', 'Volkswagen', 1500, now());
+ '1.0', '1973', 335500, 'Gasolina', 'Manual', 'Sedan', 'Volkswagen', 1500, now(), 4);
 
 
 
 --TABLE NOTIFICACAO
 insert into notificacao (data_hora, descricao)
-	values(now(), 'Exemplo de Notificação Padrão');
+	values(now(), 'Exemplo de Notificação Padrão: Bem-Vindo!');
 
 insert into notificacao (usuario_id, anuncio_id, data_hora, descricao)
 	values(2, 1, now(), 'Você recebeu uma nova mensagem!');
