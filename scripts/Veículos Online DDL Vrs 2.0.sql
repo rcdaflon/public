@@ -1,5 +1,5 @@
-create database veiculoson with encoding 'utf8';
-\c veiculoson;
+create database veiculosonline with encoding 'utf8';
+\c veiculosonline;
 
 
 create table usuario (
