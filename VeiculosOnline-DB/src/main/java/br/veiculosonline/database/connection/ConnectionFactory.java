@@ -12,7 +12,7 @@ public class ConnectionFactory {
     
     private static Connection conn;
     
-    private static final String url = "jdbc:postgresql://localhost:5432/veiculoson";
+    private static final String url = "jdbc:postgresql://localhost:5432/veiculosonline";
     private static final String user = "postgres";
     private static final String pass = "123";
         
