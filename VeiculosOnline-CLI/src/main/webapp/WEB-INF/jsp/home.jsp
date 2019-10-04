@@ -18,9 +18,9 @@
 <main role="main" style="position: absolute;">
     <div class="mt-3 py-5 bg-light">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" style="margin: 0; padding: 0;">
 
-                <div class="col-2" style="position: fixed; left: 0; border-right-style: solid; border-right-color: #ccc; border-right-width: 1px;">
+                <div class="col-2" style="position: fixed; left: 0; border-right-style: solid; border-right-color: #ccc; border-right-width: 1px; height: 100%;">
                     <form:form method="post" modelAttribute="filtro" action="${pageContext.request.contextPath}/anuncio/filtro" >
 
                         <h3 class="text-center">Filtros</h3>
@@ -80,25 +80,23 @@
                     </form:form>    
                 </div>
 
-                <div class="col-10" style="margin-left: 16.666667%;">
+                <div class="col" style="margin-left: 16.666667%;">
                     <div class="row">
                         <c:forEach  items="${anuncioList}" var="anuncio">
-                            <div class="col-md-3">
-                                <form:form name="${anuncio.id}" method="get" action="${pageContext.request.contextPath}/anuncio/${anuncio.id}">
-                                    <div class="card mb-3 box-shadow" style="cursor: pointer;" onclick="javascript:this.parentNode.submit();">
+                            <div class="col-3">
+                                <form:form method="get" action="${pageContext.request.contextPath}/anuncio/${anuncio.id}">
+                                    <div style="max-height: 390px;" class="card mb-3 box-shadow" style="cursor: pointer;" onclick="javascript:this.parentNode.submit();">
                                         <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
                                         <div class="card-body">
                                             <small class="text-muted float-right">${anuncio.nota}</small>
                                             <p class="card-text">${anuncio.titulo}</p>
-                                            <p class="card-text text-muted">${anuncio.descricao}</p>
+                                            <p style="max-width: 35ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" class="card-text text-muted">${anuncio.descricao}</p>
                                             <h3 class="float-right">R$ ${anuncio.preco}</h3>
                                         </div>
                                     </div>
                                 </form:form>
                             </div>
                         </c:forEach>
-
-
                     </div>
                 </div>
             </div>

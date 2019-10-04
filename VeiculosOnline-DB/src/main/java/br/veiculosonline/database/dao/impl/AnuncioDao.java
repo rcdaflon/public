@@ -582,7 +582,7 @@ public class AnuncioDao implements IAnuncioDao {
 
             if (status != null && !status.isEmpty()) {
                 stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE status ILIKE ? ORDER BY nota DESC");
-                stmt.setString(1, '%' + status + '%');
+                stmt.setString(1, status);
             } else {
                 stmt = conn.prepareStatement("SELECT * FROM anuncio ORDER BY nota DESC");
             }

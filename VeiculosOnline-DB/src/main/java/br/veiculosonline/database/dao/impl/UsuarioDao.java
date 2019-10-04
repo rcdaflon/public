@@ -109,7 +109,6 @@ public class UsuarioDao implements IUsuarioDao {
                 usuario.setConta(rs.getString("conta"));
                 usuario.setAgencia(rs.getString("agencia"));
                 usuario.setBanco(rs.getString("banco"));
-                usuario.setData_nasc(rs.getDate("data_nasc"));
                 usuario.setStatus(rs.getString("status"));
 
                 // adicionando o objeto à lista
@@ -179,7 +178,6 @@ public class UsuarioDao implements IUsuarioDao {
                 usuario.setConta(rs.getString("conta"));
                 usuario.setAgencia(rs.getString("agencia"));
                 usuario.setBanco(rs.getString("banco"));
-                usuario.setData_nasc(rs.getDate("data_nasc"));
                 usuario.setStatus(rs.getString("status"));
             }
 
@@ -246,7 +244,6 @@ public class UsuarioDao implements IUsuarioDao {
                 usuario.setConta(rs.getString("conta"));
                 usuario.setAgencia(rs.getString("agencia"));
                 usuario.setBanco(rs.getString("banco"));
-                usuario.setData_nasc(rs.getDate("data_nasc"));
                 usuario.setStatus(rs.getString("status"));
             }
 
@@ -418,7 +415,6 @@ public class UsuarioDao implements IUsuarioDao {
                 usuario.setConta(rs.getString("conta"));
                 usuario.setAgencia(rs.getString("agencia"));
                 usuario.setBanco(rs.getString("banco"));
-                usuario.setData_nasc(rs.getDate("data_nasc"));
                 usuario.setStatus(rs.getString("status"));
 
                 userList.add(usuario);
@@ -486,7 +482,6 @@ public class UsuarioDao implements IUsuarioDao {
                 usuario.setConta(rs.getString("conta"));
                 usuario.setAgencia(rs.getString("agencia"));
                 usuario.setBanco(rs.getString("banco"));
-                usuario.setData_nasc(rs.getDate("data_nasc"));
                 usuario.setStatus(rs.getString("status"));
             }
 
