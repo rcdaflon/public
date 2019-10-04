@@ -62,7 +62,7 @@
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Save</button>
                 <a class="btn btn-info" href="${pageContext.request.contextPath}/usuario/list">Cancel</a>
-                <a class="btn btn-info float-right btn-xs" href="${pageContext.request.contextPath}/usuario/delete/${usuario.id}">Editar</a>
+                <a class="btn btn-danger float-right btn-xs" href="${pageContext.request.contextPath}/usuario/delete/${usuario.id}">Excluir</a>
             </div>
 
         </form:form>
