@@ -7,7 +7,8 @@
     <h2 class="mt-5 mb-5">Cadastrar Novo Anúncio</h2>
 
 
-    <form:form method="post" modelAttribute="anuncio" action="${pageContext.request.contextPath}/anuncio/add" >
+    <form:form method="post" modelAttribute="anuncio" action="${pageContext.request.contextPath}/anuncio/add"  enctype="multipart/form-data">
+
 
         <div class="row">
             <spring:bind path="titulo">
@@ -26,7 +27,7 @@
             </spring:bind>
         </div>
 
-        
+        <hr>
 
         <div class="row">
             <spring:bind path="formas_pagamento">
@@ -67,7 +68,9 @@
             </spring:bind>
         </div>
 
-         <div class="row">
+        <hr>
+
+        <div class="row">
             <spring:bind path="cor">
                 <div class="form-group col-md-3 ${status.error ? 'has-error' : ''}">
                     <label class="control-label">Cor*</label>
@@ -98,6 +101,8 @@
             </spring:bind>
         </div>
 
+        <hr>
+
         <div class="row">
             <spring:bind path="cambio">
                 <div class="form-group col-md-3 ${status.error ? 'has-error' : ''}">
@@ -124,22 +129,31 @@
             </spring:bind>
             <spring:bind path="preco">
                 <div class="form-group col-md-3 ${status.error ? 'has-error' : ''}">
-                    <label class="control-label">Preço (R$)</label>
+                    <label class="control-label">Preço (R$)*</label>
                     <form:input path="preco" type="text" class="form-control" id="preco" placeholder="somente números. ex: 25990" />
                     <form:errors path="preco" class="control-label" />        
                 </div>
             </spring:bind>
         </div>
 
+        <hr>
+        <spring:bind path="files">
+            <div class="row">
+                <label class="control-label">Imagens</label>
+                <form:input path="files" type="file" name="files" accept=".png" multiple="multiple" /> 
+            </div>
+        </spring:bind>
         
+        <hr>
+
         <div class="btn-group mb-3">
             <button class="btn btn-primary" type="submit">Save</button>
             <a class="btn btn-info" href="${pageContext.request.contextPath}/anuncio/list">Cancelar</a>
         </div>
-    
+
     </form:form>   
-<small class="text-muted">* Campos obrigatórios!</small>
-        
+    <small class="text-muted">* Campos obrigatórios!</small>
+
 
 </div>
 

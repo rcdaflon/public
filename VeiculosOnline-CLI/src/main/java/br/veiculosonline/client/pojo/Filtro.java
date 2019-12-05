@@ -18,18 +18,28 @@ public class Filtro {
     private String titulo;
     private BigDecimal preco_min;
     private BigDecimal preco_max;
+    private String not_found;
 
     public Filtro() {
     }
 
-    public Filtro(Integer ano, Integer kilometragem, String titulo, BigDecimal preco_min, BigDecimal preco_max) {
+    public Filtro(Integer ano, Integer kilometragem, String titulo, BigDecimal preco_min, BigDecimal preco_max, String not_found) {
         this.ano = ano;
         this.kilometragem = kilometragem;
         this.titulo = titulo;
         this.preco_min = preco_min;
         this.preco_max = preco_max;
+        this.not_found = not_found;
     }
 
+    public String getNot_found() {
+        return not_found;
+    }
+
+    public void setNot_found(String not_found) {
+        this.not_found = not_found;
+    }
+    
     public Integer getAno() {
         return ano;
     }

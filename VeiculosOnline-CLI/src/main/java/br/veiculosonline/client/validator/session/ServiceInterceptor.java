@@ -26,9 +26,8 @@ public class ServiceInterceptor implements HandlerInterceptor {
 
         //request.
         
-        if (uri.equals("/VeiculosOnline-cli/") || uri.endsWith("login") || uri.endsWith("usuario/add") || uri.endsWith("home") || uri.contains("anuncio") 
-                || !uri.endsWith("anuncio/add") || !uri.endsWith("anuncio/listAdm") || !uri.endsWith("anuncio/list") || !uri.endsWith("anuncio/edit") || 
-                uri.endsWith("verify") || uri.endsWith("error") || uri.contains("resources") || uri.endsWith("dashboard")) {
+        if (uri.endsWith("/") || uri.endsWith("login") || uri.endsWith("usuario/add") || uri.endsWith("home") || uri.contains("anuncio") 
+                || uri.endsWith("verify") || uri.endsWith("error") || uri.contains("resources")) {
             return true;
         }
         

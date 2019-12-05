@@ -28,22 +28,22 @@ public class AnuncioFormValidator implements Validator {
 
         Anuncio anuncio = (Anuncio) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descricao", "");
-        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "laudo_veicular", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "formas_pagamento", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "portas", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantidade_donos", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "final_placa", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cor", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "motor", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ano", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "combustivel", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "kilometragem", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cambio", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "modelo", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "marca", "");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "preco", "");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descricao", "required", "Campo obrigatório!");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "laudo_veicular", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "formas_pagamento", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "portas", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "quantidade_donos", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "final_placa", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cor", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "motor", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ano", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "combustivel", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "kilometragem", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cambio", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "modelo", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "marca", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "preco", "required", "Campo obrigatório!");
         
     }
 }

@@ -5,15 +5,14 @@
  */
 package br.veiculosonline.client.validator;
 
-
 import br.veiculosonline.client.pojo.Login;
 import br.veiculosonline.database.dao.IUsuarioDao;
 import br.veiculosonline.database.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
 
 /**
  *
@@ -24,7 +23,7 @@ public class LoginFormValidator implements Validator {
 
     @Autowired
     IUsuarioDao usuarioDao;
-    
+
     @Override
     public boolean supports(Class<?> type) {
         return Login.class.equals(type);
@@ -33,25 +32,25 @@ public class LoginFormValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "Campo obrigatório!");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "senha", "required", "Campo obrigatório!");
+
         Login login = (Login) target;
-        
+
         Usuario usuario = null;
 
-        if (login.getEmail() == null || login.getEmail().isEmpty()) {
+        usuario = usuarioDao.readByUserEmailAndSenha(login.getEmail(), login.getSenha());
 
-            errors.rejectValue("email", "");
-
-        } else if (login.getSenha() == null || login.getSenha().isEmpty()) {
-
-            errors.rejectValue("senha", "");
-
-        } else {
-            
-            usuario = usuarioDao.readByUserEmailAndSenha(login.getEmail(), login.getSenha());
-
-            if (usuario == null) {
-                errors.rejectValue("msg", "");
+        if (usuario == null) {
+            usuario = usuarioDao.readByEmail(login.getEmail());
+            if (usuario != null) {
+                errors.rejectValue("senha", "");
+            } else {
+                errors.rejectValue("email", "");
             }
+        } else {
+            login.setTipo(usuario.getTipo());
         }
+
     }
 }

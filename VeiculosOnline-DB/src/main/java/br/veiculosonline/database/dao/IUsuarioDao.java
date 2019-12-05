@@ -23,6 +23,8 @@ public interface IUsuarioDao {
     
     public void update(Usuario usuario);
     
+    public void updateAdm(Usuario usuario);
+    
     public void delete(Long id);
 
     

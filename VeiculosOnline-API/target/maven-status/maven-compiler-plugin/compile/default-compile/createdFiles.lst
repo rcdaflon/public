@@ -1,0 +1,14 @@
+veiculosonline\controller\AnuncioRestController.class
+veiculosonline\controller\UsuarioRestController.class
+veiculosonline\config\SwaggerConfig.class
+veiculosonline\service\MensagemService.class
+veiculosonline\service\AnuncioService.class
+veiculosonline\service\ChatService.class
+veiculosonline\controller\NotificacaoRestController.class
+veiculosonline\controller\ChatRestController.class
+veiculosonline\service\FotoAnuncioService.class
+veiculosonline\controller\MensagemRestController.class
+veiculosonline\VeiculosOnlineApplication.class
+veiculosonline\service\NotificacaoService.class
+veiculosonline\service\UsuarioService.class
+veiculosonline\controller\FotoAnuncioRestController.class

@@ -22,11 +22,17 @@ public class AnuncioDao implements IAnuncioDao {
     }
 
     @Override
-    public void create(Anuncio anuncio) {
+    public Long create(Anuncio anuncio) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Long anuncio_id = null;
+
         String sql = "INSERT INTO anuncio (usuario_id, titulo, descricao, formas_pagamento, portas, quantidade_donos, final_placa, cor, motor, ano, combustivel, kilometragem, cambio, modelo, marca, preco, data_hora_criacao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            conn = ConnectionFactory.getConnection();
+            stmt = conn.prepareStatement(sql);
 
             stmt.setLong(1, anuncio.getUsuario_id());
             stmt.setString(2, anuncio.getTitulo());
@@ -51,6 +57,25 @@ public class AnuncioDao implements IAnuncioDao {
         } catch (SQLException e) {
             System.out.println(e);
         }
+
+        sql = "SELECT last_value FROM anuncio_id_seq;";
+
+        try {
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                anuncio_id = rs.getLong("last_value");
+                anuncio.setId(anuncio_id);
+            }
+
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return anuncio_id;
     }
 
     @Override
@@ -122,7 +147,7 @@ public class AnuncioDao implements IAnuncioDao {
             stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE usuario_id = ?  ORDER BY nota DESC");
             stmt.setLong(1, id);
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();
@@ -175,11 +200,11 @@ public class AnuncioDao implements IAnuncioDao {
             stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE id = ?");
             stmt.setLong(1, id);
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
 
-                    anuncio.setUsuario_id(id);
-                    anuncio.setId(rs.getLong("id"));
+                    anuncio.setId(id);
+                    anuncio.setUsuario_id(rs.getLong("usuario_id"));
                     anuncio.setNota(rs.getDouble("nota"));
                     anuncio.setTitulo(rs.getString("titulo"));
                     anuncio.setDescricao(rs.getString("descricao"));
@@ -237,7 +262,7 @@ public class AnuncioDao implements IAnuncioDao {
             stmt.setString(14, anuncio.getModelo());
             stmt.setString(15, anuncio.getMarca());
             stmt.setObject(16, anuncio.getPreco());
-            
+
             stmt.setLong(17, anuncio.getId());
 
             stmt.execute();
@@ -246,7 +271,7 @@ public class AnuncioDao implements IAnuncioDao {
             System.out.println(e);
         }
     }
-    
+
     @Override
     public void updateByAdm(Anuncio anuncio) {
 
@@ -254,7 +279,7 @@ public class AnuncioDao implements IAnuncioDao {
 
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            
+
             stmt.setString(1, anuncio.getStatus());
             stmt.setDouble(2, anuncio.getNota());
             stmt.setDouble(3, anuncio.getTaxa_compra());
@@ -267,8 +292,6 @@ public class AnuncioDao implements IAnuncioDao {
             System.out.println(e);
         }
     }
-    
-    
 
     @Override
     public void delete(Long id) {
@@ -301,7 +324,7 @@ public class AnuncioDao implements IAnuncioDao {
         String sql = "DELETE FROM anuncio WHERE usuario_id = ?";
 
         try {
-            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setLong(1, id);
 
                 stmt.execute();
@@ -326,7 +349,7 @@ public class AnuncioDao implements IAnuncioDao {
                 stmt = conn.prepareStatement("SELECT * FROM anuncio ORDER BY nota DESC");
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();
@@ -386,7 +409,7 @@ public class AnuncioDao implements IAnuncioDao {
         }
 
         try {
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     retorno = rs.getInt("count");
                 }
@@ -409,13 +432,13 @@ public class AnuncioDao implements IAnuncioDao {
         try {
 
             if (ano != null && ano != 0) {
-                stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE status = 'Ativo' AND ano > ? ORDER BY nota DESC");
+                stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE status = 'Ativo' AND ano >= ? ORDER BY nota DESC");
                 stmt.setInt(1, ano);
             } else {
                 stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE status = 'Ativo' ORDER BY nota DESC");
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();
@@ -472,7 +495,7 @@ public class AnuncioDao implements IAnuncioDao {
                 stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE status = 'Ativo' ORDER BY nota DESC");
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();
@@ -530,7 +553,7 @@ public class AnuncioDao implements IAnuncioDao {
                 stmt = conn.prepareStatement("SELECT * FROM anuncio WHERE status = 'Ativo' ORDER BY nota DESC");
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();
@@ -587,7 +610,7 @@ public class AnuncioDao implements IAnuncioDao {
                 stmt = conn.prepareStatement("SELECT * FROM anuncio ORDER BY nota DESC");
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();
@@ -646,7 +669,7 @@ public class AnuncioDao implements IAnuncioDao {
                 stmt.setString(1, '%' + status + '%');
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();
@@ -704,7 +727,7 @@ public class AnuncioDao implements IAnuncioDao {
                 stmt.setLong(1, id);
             }
 
-            try (ResultSet rs = stmt.executeQuery()) {
+            try ( ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
 
                     Anuncio anuncio = new Anuncio();

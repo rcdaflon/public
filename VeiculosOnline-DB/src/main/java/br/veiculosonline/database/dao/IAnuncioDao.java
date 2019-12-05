@@ -15,7 +15,7 @@ import java.math.BigDecimal;
  */
 public interface IAnuncioDao {
 
-    public void create(Anuncio anuncio);
+    public Long create(Anuncio anuncio);
 
     public List<Anuncio> readAll();
     

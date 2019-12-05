@@ -52,7 +52,7 @@
 
 
 
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Cadastrar</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" id="cadastrar_btn">Cadastrar</button>
 
                 </form:form>           
                     

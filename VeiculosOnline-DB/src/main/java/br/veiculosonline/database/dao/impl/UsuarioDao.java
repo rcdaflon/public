@@ -9,7 +9,6 @@ import br.veiculosonline.database.connection.ConnectionFactory;
 import br.veiculosonline.database.dao.IUsuarioDao;
 import br.veiculosonline.database.entity.Usuario;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,13 +25,20 @@ public class UsuarioDao implements IUsuarioDao {
 
     /**
      *
-     * @param usuario
+     * @param Rodrigo
      */
+    private final Connection conn;
+    
+    public UsuarioDao() {
+        conn = ConnectionFactory.getConnection();
+    }
+    
     @Override
     public void create(Usuario usuario) {
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         String sql = "INSERT INTO usuario (nome, email, senha) VALUES (?, ?, ?)";
 
@@ -58,6 +64,23 @@ public class UsuarioDao implements IUsuarioDao {
             }
 
         } finally {
+
+            sql = "SELECT last_value FROM usuario_id_seq;";
+
+            try {
+                stmt = conn.prepareStatement(sql);
+                rs = stmt.executeQuery();
+
+                if (rs.next()) {
+                    usuario.setId(rs.getLong("last_value"));
+                }
+
+                rs.close();
+                stmt.close();
+
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
 
             try {
                 if (!stmt.isClosed()) {
@@ -111,7 +134,7 @@ public class UsuarioDao implements IUsuarioDao {
                 usuario.setBanco(rs.getString("banco"));
                 usuario.setStatus(rs.getString("status"));
 
-                // adicionando o objeto à lista
+                // adicionando o objeto Ã  lista
                 usuarioList.add(usuario);
             }
 
@@ -247,7 +270,6 @@ public class UsuarioDao implements IUsuarioDao {
                 usuario.setStatus(rs.getString("status"));
             }
 
-
         } catch (SQLException ex) {
         } finally {
 
@@ -283,17 +305,11 @@ public class UsuarioDao implements IUsuarioDao {
      */
     @Override
     public void update(Usuario usuario) {
-        
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        
+
         String sql = "UPDATE usuario SET nome = ?, senha = ?, telefone = ?, endereco = ?, cpf = ?, tipo = ?, status = ?, banco = ?, agencia = ?, conta = ? WHERE id = ?";
 
         try {
-            conn = ConnectionFactory.getConnection();
-            conn.setAutoCommit(false);
-            
-            stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getSenha());
@@ -309,30 +325,36 @@ public class UsuarioDao implements IUsuarioDao {
             stmt.setLong(11, usuario.getId());
 
             stmt.execute();
-            conn.commit();
+            stmt.close();
         } catch (SQLException e) {
-
-            try {
-                conn.rollback();
-            } catch (SQLException ex) {
-            }
-
-        } finally {
-
-            try {
-                if (!stmt.isClosed()) {
-                    stmt.close();
-                }
-            } catch (SQLException ex) {
-            }
-
-            try {
-                if (!conn.isClosed()) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-            }
+            System.out.println(e);
         }
+        
+    }
+    
+    @Override
+    public void updateAdm(Usuario usuario) {
+
+        String sql = "UPDATE usuario SET tipo = ?, status = ?, banco = ?, agencia = ?, conta = ? WHERE id = ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            
+            stmt.setString(1, usuario.getTipo());
+            stmt.setString(2, usuario.getStatus());
+            stmt.setString(3, usuario.getBanco());
+            stmt.setString(4, usuario.getAgencia());
+            stmt.setString(5, usuario.getConta());
+
+            stmt.setLong(6, usuario.getId());
+
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
     }
 
     /**
@@ -342,43 +364,19 @@ public class UsuarioDao implements IUsuarioDao {
     @Override
     public void delete(Long id) {
 
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        
         String sql = "DELETE FROM usuario WHERE id = ?";
 
         try {
-            stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setLong(1, id);
 
             stmt.execute();
-            conn.commit();
+            stmt.close();
         } catch (SQLException e) {
-
-            try {
-                conn.rollback();
-            } catch (SQLException ex) {
-            }
-
-        } finally {
-            try {
-                if (!stmt.isClosed()) {
-                    stmt.close();
-                }
-            } catch (SQLException ex) {
-            }
-
-            try {
-                if (!conn.isClosed()) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-            }
+            System.out.println(e);
         }
-
     }
 
-    
     @Override
     public List<Usuario> readByName(String nome) {
 
@@ -450,7 +448,6 @@ public class UsuarioDao implements IUsuarioDao {
         return userList;
 
     }
-
 
     @Override
     public Usuario readByUserEmailAndSenha(String email, String senha) {

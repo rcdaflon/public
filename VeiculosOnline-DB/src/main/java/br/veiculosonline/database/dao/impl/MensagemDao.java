@@ -81,7 +81,7 @@ public class MensagemDao implements IMensagemDao {
 
         try {
             if(id != null){
-            stmt = conn.prepareStatement("SELECT * FROM mensagem WHERE chat_id = ?");
+            stmt = conn.prepareStatement("SELECT * FROM mensagem WHERE chat_id = ? ORDER BY data_hora");
             stmt.setLong(1, id);
             }
              stmt = conn.prepareStatement("SELECT");

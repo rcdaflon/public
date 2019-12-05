@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/anuncio.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -39,7 +40,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ">
-                        <a class="nav-link" href="${pageContext.request.contextPath}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/home">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <form:form method="get" action="${pageContext.request.contextPath}/anuncio/listUser">
@@ -57,7 +58,7 @@
                     </li>
                 </ul>
                 <form:form name="sair-form" class="form-inline mt-2 mt-md-0" method="get" action="${pageContext.request.contextPath}/logout" >
-                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="document.forms['sair-form'].submit();">Sair</button>
+                    <button id="sair_btn" class="btn btn-outline-success my-2 my-sm-0" onclick="document.forms['sair-form'].submit();">Sair</button>
                 </form:form>
             </div>
         </nav>

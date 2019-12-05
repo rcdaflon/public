@@ -12,7 +12,7 @@
     </head>
 
     <body class="container text-center">
-        <div class="form-signin">   
+        <div class="form-signin" id="error">   
                 <a href="${pageContext.request.contextPath}">
                     <img class="" src="${pageContext.request.contextPath}/resources/images/logoVo10.png" alt="" width="200" height="200">
                 </a>

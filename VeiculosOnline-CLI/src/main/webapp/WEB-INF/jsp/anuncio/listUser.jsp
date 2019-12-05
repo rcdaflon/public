@@ -47,6 +47,7 @@
                 <td>${anuncio.preco}</td>
                 <td>${anuncio.status}</td>
                 <td>
+                    <a class="btn btn-success btn-xs" href="${pageContext.request.contextPath}/anuncio/${anuncio.id}">Visualizar</a>
                     <a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/anuncio/editUser/${anuncio.id}">Edit</a>
                     <a class="btn btn-danger btn-xs" href="${pageContext.request.contextPath}/anuncio/delete/${anuncio.id}">Delete</a>
                 </td>

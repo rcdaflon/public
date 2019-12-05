@@ -5,9 +5,6 @@
 
 <c:set var = "tipo" scope = "session" value = "${usuario_tipo}"/>
 <c:choose>
-    <c:when test="${usuario_tipo == 'ADM'}">
-        <jsp:include page="../fragments/headerAdm.jsp" />
-    </c:when>
     <c:when test="${usuario_tipo == 'USR'}">
         <jsp:include page="../fragments/headerLogado.jsp" />
     </c:when>
@@ -18,48 +15,80 @@
 
 <main role="main">
 
-    <div id="myCarousel" class="shadow-lg carousel slide" style="" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+    <c:if test="${fotosList.size() > '0'}">
+        <div class="shadow-lg mb-0" data-ride="carousel">
+            <div class="carousel-inner" style="width: 100%; height: 360px;">
+                <div class="carousel-item active"> 
+                    <!--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>-->
 
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
-                <div class="container">
-                    <div class="carousel-caption text-right">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-
+                    <div class="row" style="height: 360px">
+                        <c:if test="${fotosList.size() > '0'}">
+                            <c:if test="${fotosList.size() < '3'}">
+                                <div class="col-xl-6 col-lg-6 mx-0 mt-2 px-0">
+                                    <img class="img-responsive" src="data:image/png;base64,${fotosList.get(0)}" width="100%" height="100%" role="img" />                      
+                                </div>
+                                <div class="col-xl-6 col-lg-6 mx-0 mt-2 px-0">
+                                    <img class="img-responsive" src="data:image/png;base64,${fotosList.get(1)}" width="100%" height="100%" role="img" />                                 
+                                </div>
+                            </c:if>
+                            <c:if test="${fotosList.size() >= '3'}">
+                                <div class="col-xl-4 col-lg-6 mx-0 mt-2 px-0">
+                                    <img class="img-responsive" src="data:image/png;base64,${fotosList.get(0)}" width="100%" height="100%" role="img" />                      
+                                </div>
+                                <div class="col-xl-4 col-lg-6 mx-0 mt-2 px-0">
+                                    <img class="img-responsive" src="data:image/png;base64,${fotosList.get(1)}" width="100%" height="100%" role="img" />                                 
+                                </div>
+                                <div class="col-xl-4 col-lg-6 mt-lg-5 mt-xl-0 mx-0 mt-2 px-0">
+                                    <img class="img-responsive" src="data:image/png;base64,${fotosList.get(2)}" width="100%" height="100%" role="img" />                      
+                                </div>
+                            </c:if>
+                        </c:if>
                     </div>
                 </div>
             </div>
         </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Próximo</span>
-        </a>
-    </div>
 
+        <div class="text-center mb-5">
+            <a class="mx-auto" data-target="#imgModal" data-toggle="modal" href="#imgModal">
+                Abrir slide de fotos
+            </a>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade mx-auto" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="imgModalTittle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered pt-0 mt-0" style="height:50%;">
+                <div class="modal-content pt-0" style="height: 62px; margin-top: -220px;">
+                    <div class="modal-header">
+                        <a class="" href="#myCarousel2" role="button" data-slide="prev" style="color: black">
+                            <i class="fa fa-arrow-left" style="color: black"></i>
+                        </a>
+                        <a class="ml-3" href="#myCarousel2" role="button" data-slide="next">
+                            <i class="fa fa-arrow-right" style="color: black"></i>
+                        </a>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="myCarousel2" class="carousel slide my-0 py-0" data-ride="carousel" data-interval="1500" style="height: auto">
+                            <div class="carousel-inner">
+                                <c:if test="${fotosList.size() > '0'}">            
+                                    <c:forEach items="${fotosList}" var="foto">
+                                        <div class="carousel-item ${fotosList.get(0) == foto ? 'active' :''}">
+                                            <img style="height: auto; width: auto;" src="data:image/png;base64,${foto}" role="img" />                      
+                                        </div>
+                                    </c:forEach>
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
+        
+    <c:if test="${fotosList.size() == '0'}">
+        <div class="mt-5 mb-5"></div>
+    </c:if>
 
     <!-- Marketing messaging and featurettes
     ================================================== -->
@@ -157,7 +186,7 @@
                         <img  src="https://img.icons8.com/ios/50/000000/new-message.png" width="" height="" />
                         <h3><br />Interessado?</h3>
                         <h6><br />Entre em contato com o dono do anúncio para maiores informações e possíveis negociações.<br /><br /></h6>
-                        <a style="text-decoration: none;" class="text-center btn-lg btn-success btn-block" href="${pageContext.request.contextPath}/chat/${usuario_id}/${anuncio.id}">Chat</a>
+                        <a style="text-decoration: none;" class="text-center btn-lg btn-success btn-block" href="${pageContext.request.contextPath}/chat/${anuncio.usuario_id}/${anuncio.id}">Chat</a>
                     </div>
                     <div class="col-1"></div>
                 </div>
@@ -170,7 +199,7 @@
 
     <!-- chat
     <div style=" float:right; height: 250px;" class="col-lg-5">
-
+    
         <div style=" height:250px;" class="mesgs">
             <div style="border-style:ridge; height:250px;" class="msg_history">
                 <div class="incoming_msg">

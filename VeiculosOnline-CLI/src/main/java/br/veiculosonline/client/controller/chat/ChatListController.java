@@ -42,10 +42,9 @@ public class ChatListController {
     IChatDao chatDao;
 
     @GetMapping("chat/{userId}/{anuncioId}")
-    public String getChat(@PathVariable("anuncioId") Long anuncioId, @PathVariable("userId") Long userId, @ModelAttribute("chat") Search search, Model model, HttpSession session) {
+    public String getChat(@PathVariable("anuncioId") Long anuncioId, @PathVariable("userId") Long userId, @ModelAttribute("chat") Chat chat, Model model, HttpSession session) {
 
         List<Mensagem> msgList = null;
-        Chat chat = null;
         List<Chat> chatList = chatDao.readAllByUserId(userId);
         if (session.getAttribute("email") != null) {
             chat = chatDao.readByUserAndAnuncioId(userId, anuncioId);
@@ -58,11 +57,9 @@ public class ChatListController {
             chat = chatDao.readByUserAndAnuncioId(userId, anuncioId);
             msgList = msgDao.readByChatId(chat.getId());
 
-            model.addAttribute("usuario_id", userId);
+            model.addAttribute("interessado_id", userId);
             model.addAttribute("chat", chat != null ? chat : Collections.EMPTY_LIST);
             model.addAttribute("msgList", msgList != null ? msgList : Collections.EMPTY_LIST);
-            model.addAttribute("chatList", chatList != null ? chatList : Collections.EMPTY_LIST);
-            model.addAttribute("search", search);
 
             return "chat/chat";
         } else {

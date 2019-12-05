@@ -7,9 +7,11 @@ public interface IFotoAnuncioDao {
     
     public void create(FotoAnuncio fotoanuncio);
     
-    public List<FotoAnuncio> getAllByAnuncId(Long id);
+    public List<FotoAnuncio> readAllByAnuncId(Long id);
 
-    public FotoAnuncio getById(Long id);
+    public FotoAnuncio readById(Long id);
+    
+    public Integer countByAnuncId(Long id);
 
     public void update(FotoAnuncio fotoanuncio);
 

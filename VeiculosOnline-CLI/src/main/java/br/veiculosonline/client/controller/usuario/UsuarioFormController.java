@@ -6,7 +6,6 @@
 package br.veiculosonline.client.controller.usuario;
 
 import br.veiculosonline.client.pojo.Filtro;
-import br.veiculosonline.client.service.UsuarioService;
 import br.veiculosonline.client.validator.UsuarioFormValidator;
 import br.veiculosonline.database.dao.IAnuncioDao;
 import br.veiculosonline.database.dao.IUsuarioDao;
@@ -41,44 +40,36 @@ public class UsuarioFormController {
     @Autowired
     IAnuncioDao anuncioDao;
 
-    UsuarioService userService;
-
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(userValidator);
     }
 
+    @PostMapping("/usuario/editAdm")
+    public String saveAdm(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            
+            return "usuario/edit";
+
+        } else {
+
+            userDao.updateAdm(usuario);
+
+            return "redirect:/usuario/list";
+        }
+    }
+    
     @PostMapping("/usuario/edit")
     public String save(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-
+            
             return "usuario/edit";
 
         } else {
 
             userDao.update(usuario);
-
-            return "redirect:/usuario/list";
-        }
-    }
-
-    @PostMapping("/usuario/add")
-    public String addUsuario(@ModelAttribute("usuario") @Validated Usuario usuario, BindingResult result, Model model, HttpSession session) {
-        if (result.hasErrors()) {
-            return "usuario/add";
-        } else {
-
-            userDao.create(usuario);
-            List<Anuncio> anuncioList = anuncioDao.readAll();
-            model.addAttribute("anuncioList", anuncioList != null ? anuncioList : Collections.EMPTY_LIST);
-            model.addAttribute("filtro", new Filtro());
-            model.addAttribute("usuario_tipo", usuario.getTipo());
-            usuario = userDao.readByEmail(usuario.getEmail());
-            
-            session.setAttribute("usuario_tipo", usuario.getTipo());
-            session.setAttribute("email", usuario.getEmail());
-            session.setAttribute("usuario_id", usuario.getId());
 
             return "redirect:/home";
         }

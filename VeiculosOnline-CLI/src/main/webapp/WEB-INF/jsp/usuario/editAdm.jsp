@@ -5,11 +5,11 @@
 
 <div class="container mt-5">
 
-    <h1>Editar Usuario: ${usuario.nome}</h1>
+    <h1>Editar Usuario: ${usuario.nome} / ${usuario.email}</h1>
 
     <div class="form-group">
 
-        <form:form method="post" modelAttribute="usuario" action="${pageContext.request.contextPath}/usuario/edit" >
+        <form:form method="post" modelAttribute="usuario" action="${pageContext.request.contextPath}/usuario/editAdm" >
 
             <form:hidden path="id" />
             <form:hidden path="nome" />

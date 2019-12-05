@@ -12,8 +12,9 @@ import br.veiculosonline.database.dao.IFotoAnuncioDao;
 import br.veiculosonline.database.entity.FotoAnuncio;
 
 @Repository
-public class FotoAnuncioDao implements IFotoAnuncioDao{
-     private final Connection conn;
+public class FotoAnuncioDao implements IFotoAnuncioDao {
+
+    private final Connection conn;
 
     public FotoAnuncioDao() {
         conn = ConnectionFactory.getConnection();
@@ -25,7 +26,7 @@ public class FotoAnuncioDao implements IFotoAnuncioDao{
 
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            
+
             stmt.setLong(1, fotoanuncio.getAnuncio_id());
             stmt.setString(2, fotoanuncio.getNome());
 
@@ -37,7 +38,7 @@ public class FotoAnuncioDao implements IFotoAnuncioDao{
     }
 
     @Override
-    public List<FotoAnuncio> getAllByAnuncId(Long id) {
+    public List<FotoAnuncio> readAllByAnuncId(Long id) {
 
         List<FotoAnuncio> fotoanuncioList = new ArrayList<>();
 
@@ -69,7 +70,7 @@ public class FotoAnuncioDao implements IFotoAnuncioDao{
     }
 
     @Override
-    public FotoAnuncio getById(Long id) {
+    public FotoAnuncio readById(Long id) {
 
         PreparedStatement stmt;
 
@@ -129,10 +130,10 @@ public class FotoAnuncioDao implements IFotoAnuncioDao{
             System.out.println(e);
         }
     }
-    
+
     @Override
     public void deleteAllByAnuncId(Long id) {
-         String sql = "DELETE FROM foto_anuncio WHERE anuncio_id = ?";
+        String sql = "DELETE FROM foto_anuncio WHERE anuncio_id = ?";
 
         try {
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -156,6 +157,53 @@ public class FotoAnuncioDao implements IFotoAnuncioDao{
         }
     }
 
-    
+    @Override
+    public Integer countByAnuncId(Long id) {
+        Integer quantidade = 0;
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = ConnectionFactory.getConnection();
+
+            stmt = conn.prepareStatement("SELECT COUNT(*) FROM foto_anuncio WHERE anuncio_id = ?");
+            stmt.setLong(1, id);
+
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                quantidade = rs.getInt("count");
+            }
+
+        } catch (SQLException ex) {
+        } finally {
+
+            try {
+                if (!rs.isClosed()) {
+                    rs.close();
+                }
+
+            } catch (SQLException ex) {
+            }
+
+            try {
+                if (!stmt.isClosed()) {
+                    stmt.close();
+                }
+            } catch (SQLException ex) {
+            }
+
+            try {
+                if (!conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+
+        return quantidade;
+    }
 
 }

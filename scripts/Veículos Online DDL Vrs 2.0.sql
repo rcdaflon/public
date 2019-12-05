@@ -19,8 +19,8 @@ create table usuario (
 );
 
 create table anuncio (
-	usuario_id integer not null references usuario(id) on update cascade on delete cascade,
 	id serial primary key,
+	usuario_id integer not null references usuario(id) on update cascade on delete cascade,
 	nota double precision default 0,
 	titulo character varying(220) not null,
 	descricao text,
@@ -48,13 +48,13 @@ create table anuncio (
 create table foto_anuncio (
 	id serial primary key,
 	anuncio_id integer not null references anuncio(id) on update cascade on delete cascade,
-	nome_foto character varying(100) not null,
-	unique(anuncio_id, nome_foto)
+	nome character varying(100) not null,
+	unique(anuncio_id, nome)
 );
 
 create table notificacao (
 	id serial primary key,
-	usuario_id integer references usuario(id)  on update cascade on delete cascade,
+	usuario_id integer references usuario(id) on update cascade on delete cascade,
 	anuncio_id integer references anuncio(id) on update cascade on delete cascade,
 	data_hora timestamp without time zone,
 	descricao text not null,
@@ -63,7 +63,7 @@ create table notificacao (
 
 create table chat (
 	id serial primary key,
-	usuario_id integer not null references usuario(id)	on update cascade on delete cascade,
+	usuario_id integer not null references usuario(id) on update cascade on delete cascade,
 	anuncio_id integer not null references anuncio(id) on update cascade on delete cascade,
 	data_hora timestamp without time zone not null,
 	unique(usuario_id, anuncio_id)

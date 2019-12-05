@@ -5,7 +5,10 @@
  */
 package br.veiculosonline.client.validator;
 
+import br.veiculosonline.client.pojo.Login;
+import br.veiculosonline.database.dao.IUsuarioDao;
 import br.veiculosonline.database.entity.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -18,7 +21,9 @@ import org.springframework.validation.Validator;
 @Component
 public class UsuarioFormValidator implements Validator {
 
-    
+    @Autowired
+    IUsuarioDao usuarioDao;
+
     @Override
     public boolean supports(Class<?> type) {
         return Usuario.class.equals(type);
@@ -29,7 +34,6 @@ public class UsuarioFormValidator implements Validator {
 
         Usuario usuario = (Usuario) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "");
         
     }
 

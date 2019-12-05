@@ -46,9 +46,9 @@
                     </spring:bind>      
 
                     <div class="form-group">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+                        <button class="btn btn-lg btn-primary btn-block" id="login_btn" type="submit">Entrar</button>
                         <spam>Ou</spam>
-                        <a class="btn btn-lg btn-primary btn-block" href="${pageContext.request.contextPath}/usuario/add" type="button">Criar conta</a>
+                        <a class="btn btn-lg btn-primary btn-block" id="cadastro_btn" href="${pageContext.request.contextPath}/usuario/add" type="button">Criar conta</a>
                     </div>
 
                 </form:form>    

@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.format.number.money.MonetaryAmountFormatter;
+import org.springframework.web.multipart.MultipartFile;
 
 public class Anuncio {
-    
+
     private Long id;
     private Long usuario_id;
     private Double nota;
@@ -32,13 +32,16 @@ public class Anuncio {
     private Timestamp data_hora_compra;
     private Double taxa_compra;
     private Long protocolo_compra;
-    
+
+    private String foto_capa;
     private List<FotoAnuncio> fotos = new ArrayList<>();
+
+    private List<MultipartFile> files;
 
     public Anuncio() {
     }
 
-    public Anuncio(Long id, Long usuario_id, Double nota, String titulo, String descricao, String laudo_veicular, String formas_pagamento, String status, Integer portas, Integer quantidade_donos, String final_placa, String cor, String motor, Integer ano, String combustivel, Integer kilometragem, String cambio, String modelo, String marca, BigDecimal preco, Timestamp data_hora_criacao, Timestamp data_hora_compra, Double taxa_compra, Long protocolo_compra) {
+    public Anuncio(Long id, Long usuario_id, Double nota, String titulo, String descricao, String laudo_veicular, String formas_pagamento, String status, Integer portas, Integer quantidade_donos, String final_placa, String cor, String motor, Integer ano, String combustivel, Integer kilometragem, String cambio, String modelo, String marca, BigDecimal preco, Timestamp data_hora_criacao, Timestamp data_hora_compra, Double taxa_compra, Long protocolo_compra, String foto_capa) {
         this.id = id;
         this.usuario_id = usuario_id;
         this.nota = nota;
@@ -63,6 +66,23 @@ public class Anuncio {
         this.data_hora_compra = data_hora_compra;
         this.taxa_compra = taxa_compra;
         this.protocolo_compra = protocolo_compra;
+        this.foto_capa = foto_capa;
+    }
+
+    public void setFoto_capa(String foto_capa) {
+        this.foto_capa = foto_capa;
+    }
+
+    public String getFoto_capa() {
+        return foto_capa;
+    }
+    
+    public List<MultipartFile> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<MultipartFile> files) {
+        this.files = files;
     }
 
     public void setFotos(List<FotoAnuncio> fotos) {
@@ -256,7 +276,7 @@ public class Anuncio {
     public Timestamp getData_hora_compra() {
         return data_hora_compra;
     }
-    
+
     public Double getTaxa_compra() {
         return taxa_compra;
     }
@@ -264,7 +284,5 @@ public class Anuncio {
     public Long getProtocolo_compra() {
         return protocolo_compra;
     }
-    
-    
-    
+
 }

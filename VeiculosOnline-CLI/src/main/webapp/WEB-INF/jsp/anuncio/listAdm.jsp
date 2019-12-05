@@ -42,6 +42,7 @@
             <th>Laudo veicular</th>
             <th>Status</th>
             <th>Ações</th>
+            <th><i class="fa fa-eye"></i></th>
 
         </tr>
         <c:forEach  items="${anuncioList}" var ="anuncio">
@@ -53,7 +54,10 @@
                 <td><a href="#">${anuncio.laudo_veicular}<a></td>
                 <td>${anuncio.status}</td>
                 <td>
-                    <a class="btn btn-info btn-xs" href="${pageContext.request.contextPath}/anuncio/editAdm/${anuncio.id}">Edit</a>
+                    <a class="btn btn-info btn-xs mr-2" href="${pageContext.request.contextPath}/anuncio/editAdm/${anuncio.id}">Edit</a>
+                </td>
+                <td>
+                    <a class="ml-2" href="${pageContext.request.contextPath}/anuncio/${anuncio.id}" target="_blank"><i class="fa fa-eye" style="color: black"></i></a>
                 </td>
             </tr>
         </c:forEach>

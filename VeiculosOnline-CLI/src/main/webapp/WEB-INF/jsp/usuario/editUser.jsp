@@ -50,10 +50,17 @@
                 </div>
             </spring:bind>
 
+            <spring:bind path="senha">
+                <div class="form-group ${status.error ? 'has-error' : ''}">
+                    <label class="control-label">Senha</label>
+                    <form:input path="senha" type="text" class="form-control" id="senha" placeholder="senha (mínimo 6 caracteres)" />
+                    <form:errors path="senha" class="control-label" />        
+                </div>
+            </spring:bind>
+            
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Save</button>
                 <a class="btn btn-info" href="${pageContext.request.contextPath}/usuario/list">Cancel</a>
-                <a class="btn btn-info" href="${pageContext.request.contextPath}/usuario/editSenha">Alterar Senha</a>
             </div>
 
         </form:form>
